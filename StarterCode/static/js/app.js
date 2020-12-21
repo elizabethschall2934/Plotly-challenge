@@ -18,3 +18,18 @@
 // ## Hints
 // * Use `console.log` inside of your JavaScript code to see what your data looks like at each step.
 // * Refer to the [Plotly.js documentation] when building the plots.
+
+function buildInfo(sample) {
+      
+    d3.json("samples.json").then((data) => {
+
+      var demographic = data.metadata;
+
+      var sampleData = demographic.filter(tests => tests.id == sample);
+
+      var filteredData = sampleData[0];
+
+      console.log(filteredData);
+    });
+
+}
