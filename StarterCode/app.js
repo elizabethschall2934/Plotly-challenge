@@ -1,4 +1,5 @@
 // 1. Use the D3 library to read in samples.json.
+
 function buildDemos(sample) {
   d3.json("samples.json").then((data) => {
 
@@ -7,16 +8,29 @@ function buildDemos(sample) {
       var sampleData = demographics.filter(test => test.id == sample);
       var filteredData = sampleData[0];
     
-      var subject = d3.select("#sample-metadata");
-      subject.html("");
+      var PANEL = d3.select("#sample-metadata");
+      PANEL.html("");
     
       Object.entries(filteredData).forEach(([key, value]) => {
-        subject.append("h6").text(`${key.toUpperCase()}: ${value}`);
+        PANEL.append("h6").text(`${key.toUpperCase()}: ${value}`);
 
       });
 
   });
 }
+
+function plotSubject(sample) {
+  d3.json("samples.json").then((data) => {
+
+      var subject = data.samples;
+
+      var sampleData = subject.filter(test => test.id == sample);
+      var filteredData = sampleData[0];
+
+      var otuId = filteredData.otu_ids;
+      var otuLabel = filteredData.otu_labels;
+      var sampleValue = filteredData.sample_values;
+      
 // 2. Create a horizontal bar chart with a dropdown menu to display the top 10 OTUs found in that individual.
 // * Use `sample_values` as the values for the bar chart.
 // * Use `otu_ids` as the labels for the bar chart.
