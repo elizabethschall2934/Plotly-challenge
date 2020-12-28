@@ -38,7 +38,7 @@ function plotSubject(test) {
         type: "bar",
         orientation: "h",
         marker: {
-            color: 'purple'
+            color: 'rgb(204, 0, 153)',
         },
         
         
@@ -53,15 +53,47 @@ function plotSubject(test) {
         };
         
         Plotly.newPlot("bar", data1, layout1);
+
+        // 3. Create a bubble chart that displays each sample.
+        // * Use `otu_ids` for the x values.
+        // * Use `sample_values` for the y values.
+        // * Use `sample_values` for the marker size.
+        // * Use `otu_ids` for the marker colors.
+        // * Use `otu_labels` for the text values. 
+
+        var trace2 = {
+            x: otuIds,
+            y: sampleValues,
+            text: otuLabels,
+            mode: 'markers',
+            marker: {
+              color: otuIds,
+              colorscale: 'Bluered',
+            //   opacity: otuIds,
+              size: sampleValues,
+              line: {
+                color: otuIds,
+                colorscale: 'Bluered',
+              }
+            },
+            type: 'scatter'
+          };
+          
+        var data2 = [trace2];
+          
+        var layout2 = {
+            showlegend: false,
+            title: "Subject Demographics",
+            xaxis: { title: "OTU IDs" },
+            yaxis: { title: "Sample Values" }
+        };
+          
+          Plotly.newPlot("bubble", data2, layout2);
     });
 }
 
-// 3. Create a bubble chart that displays each sample.
-// * Use `otu_ids` for the x values.
-// * Use `sample_values` for the y values.
-// * Use `sample_values` for the marker size.
-// * Use `otu_ids` for the marker colors.
-// * Use `otu_labels` for the text values. 
+
+
 // 4. Display the sample metadata, i.e., an individual's demographic information.
 // 5. Display each key-value pair from the metadata JSON object somewhere on the page.
 // 6. Update all of the plots any time that a new sample is selected. 
