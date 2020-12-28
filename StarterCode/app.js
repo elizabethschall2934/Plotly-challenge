@@ -48,6 +48,11 @@ function plotSubject(test) {
 
         var layout1 = {
             title: "Top 10 Operational Taxonomic Units, OTUs",
+            font: {
+                family: 'sans-serif, monospace',
+                size: 12,
+                color: '#9f0fd8'
+              },
             xaxis: { title: "Sample Values" },
             yaxis: { title: "OTU IDs" }
         };
@@ -84,6 +89,11 @@ function plotSubject(test) {
         var layout2 = {
             showlegend: false,
             title: "Subject Demographics",
+            font: {
+                family: 'sans-serif, monospace',
+                size: 12,
+                color: '#9f0fd8'
+              },
             xaxis: { title: "OTU IDs" },
             yaxis: { title: "Sample Values" }
         };
