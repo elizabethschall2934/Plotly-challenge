@@ -99,10 +99,45 @@ function plotSubject(test) {
         };
           
           Plotly.newPlot("bubble", data2, layout2);
-    });
-}
 
-
+//Bonus Gauge
+        var trace3 = [
+          {
+            type: "indicator",
+            mode: "gauge+number+delta",
+            value: 420,
+            title: { text: "Belly Button Washing Frequency", font: { size: 24 } },
+            delta: { reference: 400, increasing: { color: "RebeccaPurple" } },
+            gauge: {
+              axis: { range: [null, 500], tickwidth: 1, tickcolor: "darkblue" },
+              bar: { color: "darkblue" },
+              bgcolor: "white",
+              borderwidth: 2,
+              bordercolor: "gray",
+              steps: [
+                { range: [0, 250], color: "cyan" },
+                { range: [250, 400], color: "royalblue" }
+              ],
+              threshold: {
+                line: { color: "red", width: 4 },
+                thickness: 0.75,
+                value: 490
+              }
+            }
+          }
+        ];
+        var data3 = [trace3];
+        var layout3 = {
+          width: 500,
+          height: 400,
+          margin: { t: 25, r: 25, l: 25, b: 25 },
+          paper_bgcolor: "lavender",
+          font: { color: "darkblue", family: "Arial" }
+        };
+      
+          Plotly.newPlot("gauge", data3, layout3);
+        });
+      }
 
 // 4. Display the sample metadata, i.e., an individual's demographic information.
 // 5. Display each key-value pair from the metadata JSON object somewhere on the page.
