@@ -101,42 +101,52 @@ function plotSubject(test) {
           Plotly.newPlot("bubble", data2, layout2);
 
 //Bonus Gauge
-        var trace3 = [
-          {
-            type: "indicator",
-            mode: "gauge+number+delta",
-            value: 420,
-            title: { text: "Belly Button Washing Frequency", font: { size: 24 } },
-            delta: { reference: 400, increasing: { color: "RebeccaPurple" } },
-            gauge: {
-              axis: { range: [null, 500], tickwidth: 1, tickcolor: "darkblue" },
-              bar: { color: "darkblue" },
-              bgcolor: "white",
-              borderwidth: 2,
-              bordercolor: "gray",
-              steps: [
-                { range: [0, 250], color: "cyan" },
-                { range: [250, 400], color: "royalblue" }
-              ],
-              threshold: {
-                line: { color: "red", width: 4 },
-                thickness: 0.75,
-                value: 490
-              }
-            }
-          }
-        ];
-        var data3 = [trace3];
-        var layout3 = {
-          width: 500,
-          height: 400,
-          margin: { t: 25, r: 25, l: 25, b: 25 },
-          paper_bgcolor: "lavender",
-          font: { color: "darkblue", family: "Arial" }
+        var trace3 = {
+          type: "pie",
+          showlegend: false,
+          hole: 0.4,
+          rotation: 90,
+          values: [90 / 9, 90 / 9, 90 / 9, 90 / 9, 90 / 9, 90 / 9, 90 / 9, 90 / 9, 90 / 9, 90],
+          text: ["0-1", "1-2", "2-3", "3-4", "4-5", "5-6", "6-7", "7-8", "8-9", ""],
+          direction: "clockwise",
+          textinfo: "text",
+          textposition: "inside",
+          marker: {
+            colors: ["rgba(255,25,140,1.0)", "rgba(255,25,179,1.0)", "rgba(255,25,217,1.0)", "rgba(255,25,255,1.0)", "rgba(217, 25, 255, 0.8)", "rgba(179,25,255,1.0)", "rgba(140, 25, 255, 0.8)", "rgba(102,25,255,1.0)", "rgba(64, 25, 255  , 0.8)", "white"]
+          },  
+          labels: ["0-1", "1-2", "2-3", "3-4", "4-5", "5-6", "6-7", "7-8", "8-9", ""],
+          hoverinfo: "label"
         };
-      
+            
+          
+        var degrees = 180, radius = .6;
+        var radians = degrees * Math.PI / 180;
+        var x = -1 * radius * Math.cos(radians);
+        var y = radius * Math.sin(radians);
+                
+        var layout3 = {
+          shapes:[{
+              type: 'line',
+              x0: 0,
+              y0: 0,
+              x1: x,
+              y1: 0.5,
+              line: {
+                color: 'black',
+                width: 8
+              }
+            }],
+          title: 'Belly Button Washing Frequency',
+          xaxis: {visible: false, range: [-1, 1]},
+          yaxis: {visible: false, range: [-1, 1]}
+          };
+          
+          var data3 = [trace3];
+                    
           Plotly.newPlot("gauge", data3, layout3);
+                  
         });
+        
       }
 
 // 4. Display the sample metadata, i.e., an individual's demographic information.
